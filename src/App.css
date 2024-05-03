@@ -29,8 +29,9 @@
   width: 100%;
   text-align: center;
 }
-.register{
+.register, .product{
   margin-left: 30%;
+  margin-top:100px;
 }
 .login{
   margin-top: 100px;
@@ -52,7 +53,26 @@
   border: solid 1px;
   cursor: pointer;
 }
-.
+.invalid-input{
+  color:red;
+  display: block;
+  margin-left: 20px;
+  margin-top: -20px;
+}
+.product-list{
+  text-align: center;
+  margin-top: 50px;
+
+}
+.product-list ul li{
+  display: inline-block;
+  border: 1px solid skyblue;
+  padding: 5px;
+  width: 150px;
+}
+.product-list ul{
+  margin: 0;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
