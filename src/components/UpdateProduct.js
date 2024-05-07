@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate } from 'react-router-dom';
 
 const UpdateProduct = () => {
     const [name, setName] = useState("");
@@ -8,12 +8,13 @@ const UpdateProduct = () => {
     const [category, setCategory] = useState("");
     const [company, setCompany] = useState("");
     const params = useParams();
+    const navigate = useNavigate();
 
-    useEffect(()=>{       
+    useEffect(() => {
         getProductDetails();
-    },[]);
+    }, []);
 
-    const getProductDetails = async() =>{
+    const getProductDetails = async () => {
         console.log(params);
         let result = await fetch(`http://localhost:5000/product/${params.id}`);
         result = await result.json();
@@ -24,10 +25,20 @@ const UpdateProduct = () => {
     };
 
 
-    const updateProduct = async()=>{
-        console.log(name,price,category,company);
+    const updateProduct = async () => {
+        console.log(name, price, category, company);
+        let result = await fetch(`http://localhost:5000/product/${params.id}`, {
+            method: "Put",
+            body: JSON.stringify({ name, price, category, company }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        result = await result.json()
+        console.log(result)
+        navigate('/')
     };
-    
+
 
     return (
         <div className='product'>
@@ -45,7 +56,7 @@ const UpdateProduct = () => {
                 onChange={(e) => { setCompany(e.target.value) }} value={company} />
 
             <button className='appButton'
-            onClick={updateProduct} >Update Product</button>
+                onClick={updateProduct} >Update Product</button>
         </div>
     )
 }
