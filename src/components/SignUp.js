@@ -15,7 +15,7 @@ const SignUp = () => {
       if (auth) {
         navigate('/')
       }
-    })
+    },[]);
 
 
     const collectData =async ()=>{
@@ -25,12 +25,13 @@ const SignUp = () => {
           body: JSON.stringify({name,email,password}) ,
           headers : {
             'content-type' : 'application/json'}
-        });
+        },[]);
 
         result = await result.json()
         console.warn(result);
         localStorage.setItem("user", JSON.stringify(result));   //to store data in local storage . 
-         navigate('/')      
+        // localStorage.setItem("user", JSON.stringify(result.auth));
+        navigate('/')      
     }
 
 

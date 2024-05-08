@@ -9,7 +9,14 @@ const ProductList = () => {
     }, [])
 
     const getProducts = async () => {
-        let result = await fetch("http://localhost:5000/products");
+        let result = await fetch("http://localhost:5000/products"
+        ,{
+            headers: {
+                authorization : JSON.parse(localStorage.getItem('token'))    //to sent token 
+            }
+        }
+    );
+
         result = await result.json();
         setProducts(result);
     }
@@ -44,7 +51,7 @@ const ProductList = () => {
     return (
         <div className='product-list'>
             <h3>Product List</h3>
-            <input type='text' className='search-box' placeholder='Search Product'
+            <input type='text' className='search-box' placeholder='Search Product '
                 onChange={searchHandle}
             />
             <ul>
