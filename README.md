@@ -8,7 +8,7 @@
 * API integration
 * API check on Postman
   
-###There are two branches in git repository: 
+###There are two branches in git repository: --
 # Main branch of Front End with using React Js
 # Master branch of NODE JS
   
